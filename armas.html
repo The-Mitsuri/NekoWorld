@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armas e Tipos de Dano - Nekopara</title>
+    <meta name="description" content="Tipos de dano físico e cálculo de dano de armas em Nekopara.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <!-- Conteúdo Principal -->
+    <main id="conteudo" class="flex-grow max-w-6xl mx-auto px-4 py-16 space-y-12">
+        <div>
+            <a href="../index.html" class="inline-flex items-center text-xs font-bold text-medieval-gold bg-medieval-card border border-medieval-border px-4 py-2 rounded hover:bg-medieval-border transition">
+                &larr; Voltar ao Início
+            </a>
+        </div>
+
+        <!-- Cabeçalho -->
+        <div class="text-center space-y-4 border-b border-medieval-border pb-8">
+            <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">🗡️ Armas e Tipos de Dano</h1>
+            <p class="text-medieval-muted text-base">Compreenda as categorias de dano físico, as fraquezas de inimigos e o cálculo oficial de combate.</p>
+        </div>
+
+        <!-- Cálculo de Dano -->
+        <div class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-4">
+            <h3 class="text-2xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Cálculo de Dano</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <p class="text-xs text-medieval-muted uppercase tracking-wider">Para armas</p>
+                    <div class="bg-medieval-bg p-4 rounded border border-medieval-border text-xs sm:text-sm text-medieval-gold font-mono text-center">
+                        Dano da Arma + Força/Agilidade + Modificador
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-xs text-medieval-muted uppercase tracking-wider">Para magias</p>
+                    <div class="bg-medieval-bg p-4 rounded border border-medieval-border text-xs sm:text-sm text-medieval-gold font-mono text-center">
+                        Dano da Magia + Modificador
+                    </div>
+                </div>
+            </div>
+            <ul class="text-xs text-medieval-muted space-y-2 list-disc list-inside">
+                <li>Armas que possuem apenas <strong>1 tipo de dano</strong> recebem <strong>+2 de dano</strong>, para compensar a falta de versatilidade. Armas que aparecem em mais de uma lista (como o machado e o chicote) não recebem o bônus.</li>
+                <li>O dano base costuma ser <strong>1d6 ou 1d8</strong>.</li>
+                <li><strong>Crítico:</strong> o crítico é sempre um 20 natural no d20 e <strong>dobra o dano</strong>.</li>
+                <li>A maior parte das DT mínimas (testes mínimos) é 15.</li>
+                <li><strong>Esquiva:</strong> é a DT de acerto dos ataques. Se o inimigo tem 10 de Esquiva, a DT mínima para acertá-lo é 10.</li>
+            </ul>
+            <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                <div class="bg-medieval-bg p-3 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-1">Soco</strong>
+                    <span class="text-medieval-muted">1d2 + Força (teste de Luta)</span>
+                </div>
+                <div class="bg-medieval-bg p-3 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-1">Chute</strong>
+                    <span class="text-medieval-muted">1d2 + Agilidade (teste de Agilidade)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipos de Dano Físico -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-medieval-gold text-center">Tipos de Dano Físico</h2>
+            <p class="text-sm text-medieval-muted text-center max-w-3xl mx-auto">
+                Cada inimigo pode ter fraqueza extra ou resistência/imunidade a certo tipo de dano. Um golem de pedra claramente não recebe dano cortante, mas recebe dano de impacto. Seja esperto na sua escolha de arma.
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h3 class="text-xl font-bold text-medieval-gold">⚔️ Cortante</h3>
+                    <p class="text-medieval-muted text-xs leading-relaxed">Armas de corte: espadas, machados, foices.</p>
+                    <ul class="text-xs text-medieval-muted pt-2 border-t border-medieval-border space-y-1 list-disc list-inside">
+                        <li>Espada (curta)</li>
+                        <li>Espada (longa)</li>
+                        <li>Espada (grande)</li>
+                        <li>Adaga (longa)</li>
+                        <li>Garras</li>
+                        <li>Machado</li>
+                        <li>Chicote</li>
+                        <li>Alabarda</li>
+                        <li>Cimitarra</li>
+                        <li>Foice de guerra</li>
+                        <li>Glaive</li>
+                    </ul>
+                </div>
+
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h3 class="text-xl font-bold text-medieval-gold">🎯 Perfurante</h3>
+                    <p class="text-medieval-muted text-xs leading-relaxed">Armas de perfuração: lanças, flechas, adagas curtas.</p>
+                    <ul class="text-xs text-medieval-muted pt-2 border-t border-medieval-border space-y-1 list-disc list-inside">
+                        <li>Adaga (curta)</li>
+                        <li>Lança</li>
+                        <li>Arco</li>
+                        <li>Besta</li>
+                        <li>Dentes (criaturas)</li>
+                        <li>Espada</li>
+                        <li>Estilete</li>
+                        <li>Tridente</li>
+                        <li>Rapieira</li>
+                        <li>Dardo de arremesso</li>
+                    </ul>
+                </div>
+
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h3 class="text-xl font-bold text-medieval-gold">🔨 Contundente / Impacto</h3>
+                    <p class="text-medieval-muted text-xs leading-relaxed">Armas de impacto: martelos, socos, clavas.</p>
+                    <ul class="text-xs text-medieval-muted pt-2 border-t border-medieval-border space-y-1 list-disc list-inside">
+                        <li>Martelo</li>
+                        <li>Cajado</li>
+                        <li>Chicote</li>
+                        <li>Machado</li>
+                        <li>Maça</li>
+                        <li>Flail (mangual)</li>
+                        <li>Manopla</li>
+                        <li>Porrete cravado</li>
+                        <li>Clava (grande)</li>
+                        <li>Socos</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-xs text-medieval-muted text-center">
+                <strong>Adagas:</strong> a adaga curta causa dano perfurante e a adaga longa causa dano cortante.
+            </p>
+        </div>
+
+        <!-- Outros tipos de dano -->
+        <div class="space-y-4">
+            <h2 class="text-2xl font-bold text-medieval-gold text-center">Outros Tipos de Dano</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-2">
+                    <h3 class="text-lg font-bold text-medieval-gold">✨ Elemental / Mágico</h3>
+                    <ul class="text-xs text-medieval-muted space-y-1 list-disc list-inside">
+                        <li>Elemento favorável: +50% de dano</li>
+                        <li>Elemento desfavorável ou igual: -25% de dano</li>
+                        <li>Elemento neutro: dano base</li>
+                    </ul>
+                    <p class="text-xs text-medieval-muted">Só valem para feitiços classificados como Dano Elemental. Feitiços com dano Cortante, Perfurante ou semelhante não entram nessa classificação.</p>
+                </div>
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-2">
+                    <h3 class="text-lg font-bold text-medieval-gold">🩸 Dano Verdadeiro</h3>
+                    <p class="text-xs text-medieval-muted">O tipo de dano mais raro existente: ignora armaduras e resistência do jogador. Pode ser encontrado em chefes especiais, armaduras lendárias e talvez em grimórios.</p>
+                </div>
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-2">
+                    <h3 class="text-lg font-bold text-medieval-gold">🧠 Dano Mental</h3>
+                    <p class="text-xs text-medieval-muted">Comum em magias do tipo Lunar. Não necessariamente gasta seus pontos de HP, mas te deixa vulnerável a possíveis danos e perdas de ações.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+</body>
+</html>

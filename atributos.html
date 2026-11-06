@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atributos e Sanidade - Nekopara</title>
+    <meta name="description" content="Distribuição de atributos, recursos vitais e sistema de Sanidade de Nekopara.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <!-- Conteúdo Principal -->
+    <main id="conteudo" class="flex-grow max-w-5xl mx-auto px-4 py-16 space-y-12">
+        <div>
+            <a href="../index.html" class="inline-flex items-center text-xs font-bold text-medieval-gold bg-medieval-card border border-medieval-border px-4 py-2 rounded hover:bg-medieval-border transition">
+                &larr; Voltar ao Início
+            </a>
+        </div>
+
+        <!-- Cabeçalho -->
+        <div class="text-center space-y-4 border-b border-medieval-border pb-8">
+            <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">📊 Atributos e Sanidade</h1>
+            <p class="text-medieval-muted text-base">Distribuição de pontos, cálculos de recursos vitais e o temido sistema de Sanidade de Nekopara.</p>
+        </div>
+
+        <!-- Seção de Distribuição -->
+        <div class="space-y-8">
+            <div class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-4 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-16 h-16 bg-medieval-gold/5 rounded-bl-full"></div>
+                <h3 class="text-2xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Regras de Distribuição</h3>
+                <p class="text-medieval-muted text-sm sm:text-base leading-relaxed">
+                    Você deve distribuir <strong>10 pontos</strong> entre seus atributos, começando em 0 com limite base de 6 (ou até 8 caso sua raça/habilidade garanta bônus extras).
+                </p>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border text-xs text-medieval-gold font-mono space-y-1">
+                    <p>• <strong>Atributos Zerados:</strong> Direito a 2 testes, pegando o menor resultado (o 20 natural sempre prevalece).</p>
+                    <p>• <strong>Atributos Negativados:</strong> Joga +1 dado para cada ponto zerado e pega sempre o menor resultado, independente do 20.</p>
+                </div>
+            </div>
+
+            <!-- Os 5 Atributos -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h4 class="text-xl font-bold text-medieval-gold">💪 Força</h4>
+                    <p class="text-medieval-muted text-sm leading-relaxed">Determina o dano bruto e a capacidade de carregar pesos (armas, armaduras, objetos).</p>
+                    <div class="text-xs text-medieval-gold font-mono pt-2 border-t border-medieval-border">A cada 1 ponto: <strong>+4 em PE</strong> (Pontos de Esforço).</div>
+                </div>
+
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h4 class="text-xl font-bold text-medieval-gold">⚡ Agilidade</h4>
+                    <p class="text-medieval-muted text-sm leading-relaxed">Controla velocidade, reflexos, esquiva e precisão para desviar de ataques ou subir obstáculos.</p>
+                    <div class="text-xs text-medieval-gold font-mono pt-2 border-t border-medieval-border">A cada 2 pontos: <strong>+1 de Esquiva</strong>.</div>
+                </div>
+
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h4 class="text-xl font-bold text-medieval-gold">🛡️ Vigor</h4>
+                    <p class="text-medieval-muted text-sm leading-relaxed">Define sua saúde, pontos de HP, resistência física e fôlego geral para o combate.</p>
+                    <div class="text-xs text-medieval-gold font-mono pt-2 border-t border-medieval-border">A cada 1 ponto: <strong>+5 em HP</strong>.</div>
+                </div>
+
+                <div class="bg-medieval-card p-6 rounded-lg border-2 border-medieval-border shadow-xl space-y-3">
+                    <h4 class="text-xl font-bold text-medieval-gold">🔮 Inteligência</h4>
+                    <p class="text-medieval-muted text-sm leading-relaxed">Responsável pelo conhecimento, intelecto acadêmico, histórico e saber sobre feitiços.</p>
+                    <div class="text-xs text-medieval-gold font-mono pt-2 border-t border-medieval-border">A cada 1 ponto: <strong>+5 em Mana ou +3 em Fé</strong>.</div>
+                </div>
+            </div>
+
+            <!-- Carisma e Sanidade -->
+            <div class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-4">
+                <h3 class="text-2xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">👑 Carisma & O Sistema de Sanidade</h3>
+                <p class="text-medieval-muted text-sm sm:text-base leading-relaxed">
+                    Mede sua lábia, liderança e percepção emocional. Cada 1 ponto em Carisma concede <strong>+5 em Sanidade</strong>.
+                </p>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border text-xs text-medieval-muted space-y-2">
+                    <p><strong class="text-medieval-gold">Barra Base:</strong> Você começa com 20 de Sanidade.</p>
+                    <p><strong class="text-medieval-gold">Chegando a 5:</strong> Pode receber penalidades como medo (atrapalha ações), pavor (paralisa) e alucinações (te deixam maluco).</p>
+                    <p><strong class="text-medieval-gold">Chegando a 0:</strong> Rola 1d6: quanto menor o resultado, pior a penalidade. No melhor caso, você fica paralisado por 3 turnos e recupera 5 de Sanidade depois deles; se não recuperar, perde 1 e fica mais 3 turnos paralisado, até enlouquecer e sair do combate. No pior caso, a Mestre toma a sua ficha pelo resto do combate. A Mestre também pode forçar um clérigo a curar inimigos, um bardo a dar debuffs em aliados, ou você simplesmente se matar.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+</body>
+</html>

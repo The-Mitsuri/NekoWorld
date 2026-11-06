@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes de Nekopara - NekoWorld</title>
+    <meta name="description" content="Todas as classes de Nekopara, com status base e recursos.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <!-- Conteúdo Principal -->
+    <main id="conteudo" class="flex-grow max-w-6xl mx-auto px-4 py-16 space-y-12">
+        <div>
+            <a href="../index.html" class="inline-flex items-center text-xs font-bold text-medieval-gold bg-medieval-card border border-medieval-border px-4 py-2 rounded hover:bg-medieval-border transition">
+                &larr; Voltar ao Início
+            </a>
+        </div>
+
+        <!-- Cabeçalho -->
+        <div class="text-center space-y-4 border-b border-medieval-border pb-8">
+            <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">⚔️ Classes de Nekopara</h1>
+            <p class="text-medieval-muted text-base">Conheça as especializações, vantagens, recursos exclusivos (como Ki, Fúria e Mana) e desvantagens de cada classe.</p>
+        </div>
+
+        <!-- Busca rápida por classe -->
+        <div class="max-w-xl mx-auto w-full">
+            <label for="class-search" class="block text-sm text-medieval-gold mb-2">Buscar classe ou recurso</label>
+            <input id="class-search" type="search" autocomplete="off" placeholder="Ex.: Ki, magia, Fúria, cura..." class="w-full bg-medieval-card border border-medieval-border rounded-lg px-4 py-3 text-medieval-text focus:outline-none focus:border-medieval-gold">
+            <p id="class-search-count" class="text-xs text-medieval-muted mt-2" aria-live="polite"></p>
+        </div>
+
+        <!-- Os cards são gerados por js/classes.js a partir de js/data/classes.js -->
+        <div id="class-grid" class="grid md:grid-cols-2 gap-8"></div>
+        <p id="class-empty" hidden class="text-center text-medieval-muted">Nenhuma classe encontrada para essa busca.</p>
+
+        <div class="text-center">
+            <a href="personagens.html" class="inline-block bg-amber-800 hover:bg-amber-700 text-amber-100 border border-medieval-gold/50 px-6 py-2 rounded-md font-bold shadow transition">
+                📝 Calcular status na ficha
+            </a>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="../js/data/classes.js"></script>
+    <script src="../js/classes.js"></script>
+</body>
+</html>

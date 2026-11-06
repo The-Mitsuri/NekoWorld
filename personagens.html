@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Personagens - NekoWorld</title>
+    <meta name="description" content="Seus personagens de Nekopara: crie, guarde e abra suas fichas.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <main id="conteudo" class="flex-grow w-full max-w-4xl mx-auto px-4 py-12 space-y-8">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-medieval-border pb-6">
+            <div>
+                <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">📜 Meus Personagens</h1>
+                <p id="count" class="text-medieval-muted text-sm sm:text-base mt-2" aria-live="polite">Personagens: 0/15</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <label class="border border-medieval-border hover:bg-medieval-border rounded px-4 py-3 cursor-pointer transition text-sm font-bold focus-within:outline focus-within:outline-2 focus-within:outline-medieval-goldHover">
+                    Importar JSON<input id="import-char" type="file" accept="application/json,.json" class="sr-only">
+                </label>
+                <button id="new-char" type="button" class="bg-amber-800 hover:bg-amber-700 text-amber-100 border border-medieval-gold/50 rounded px-5 py-3 font-bold shadow transition">Novo Personagem</button>
+            </div>
+        </div>
+
+        <p id="status" class="text-xs text-medieval-muted" aria-live="polite"></p>
+
+        <div id="char-list" class="space-y-4"></div>
+
+        <p id="empty" hidden class="text-medieval-muted text-center py-10 bg-medieval-card border border-medieval-border rounded-lg">
+            Nenhum personagem ainda. Toque em <b class="text-medieval-gold">Novo Personagem</b> para montar a sua primeira ficha.
+        </p>
+        <p class="text-xs text-medieval-muted">Os personagens ficam salvos neste navegador. Para levar um deles a outro aparelho ou guardar um backup, use <b>Exportar</b> no menu ⚙ do personagem e <b>Importar JSON</b> no outro aparelho.</p>
+    </main>
+
+    <!-- Menu ⚙ do personagem -->
+    <dialog id="menu" class="bg-medieval-card text-medieval-text border-2 border-medieval-gold rounded-lg p-0 w-[min(92vw,22rem)] backdrop:bg-black/70">
+        <div class="p-5 space-y-3">
+            <h2 id="menu-title" class="text-lg font-bold text-medieval-gold truncate">Personagem</h2>
+            <div class="grid gap-2 text-sm">
+                <button type="button" data-act="photo" class="text-left border border-medieval-border hover:bg-medieval-border rounded px-3 py-2">🖼️ Alterar foto</button>
+                <button type="button" data-act="remove-photo" class="text-left border border-medieval-border hover:bg-medieval-border rounded px-3 py-2">🚫 Remover foto</button>
+                <button type="button" data-act="combat" class="text-left border border-medieval-border hover:bg-medieval-border rounded px-3 py-2">🩸 Abrir Combate</button>
+                <button type="button" data-act="duplicate" class="text-left border border-medieval-border hover:bg-medieval-border rounded px-3 py-2">📄 Duplicar</button>
+                <button type="button" data-act="export" class="text-left border border-medieval-border hover:bg-medieval-border rounded px-3 py-2">💾 Exportar JSON</button>
+                <button type="button" data-act="delete" class="text-left border border-red-900 text-red-300 hover:bg-red-950 rounded px-3 py-2">🗑️ Excluir personagem</button>
+            </div>
+            <button type="button" data-act="close" class="w-full bg-medieval-bg border border-medieval-border hover:bg-medieval-border rounded px-3 py-2 text-sm">Fechar</button>
+        </div>
+    </dialog>
+    <input id="photo-input" type="file" accept="image/*" class="sr-only" tabindex="-1" aria-hidden="true">
+
+    <div id="site-footer"></div>
+
+    <script src="../js/data/classes.js"></script>
+    <script src="../js/ficha-core.js"></script>
+    <script src="../js/personagens.js"></script>
+</body>
+</html>

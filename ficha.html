@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Automática - NekoWorld</title>
+    <meta name="description" content="Ficha automática de Nekopara: calcula status, guarda o inventário e rola dados.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <main id="conteudo" class="flex-grow w-full max-w-6xl mx-auto px-4 py-12 space-y-10">
+        <div class="no-print">
+            <a href="personagens.html" class="inline-flex items-center text-xs font-bold text-medieval-gold bg-medieval-card border border-medieval-border px-4 py-2 rounded hover:bg-medieval-border transition">
+                &larr; Meus personagens
+            </a>
+        </div>
+
+        <!-- Título -->
+        <div class="text-center space-y-3 border-b border-medieval-border pb-6">
+            <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">⚔️ Ficha do Personagem</h1>
+            <p class="text-medieval-muted text-sm sm:text-base">Preencha seus atributos base, selecione sua classe e raça para calcular instantaneamente seus status vitais.</p>
+            <p class="no-print"><a id="go-combate" href="combate.html" class="inline-block bg-medieval-bg hover:bg-medieval-border text-medieval-gold border border-medieval-gold/60 px-5 py-2 rounded-md text-sm font-bold transition">🩸 Ir para o Controle de Combate &rarr;</a></p>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+            <!-- PAINEL DE ENTRADAS -->
+            <div class="lg:col-span-7 bg-medieval-card p-6 sm:p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-6">
+                <h2 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">1. Informações Básicas</h2>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="char-name" class="block text-xs font-bold text-medieval-gold mb-1">Nome do Personagem</label>
+                        <input type="text" id="char-name" maxlength="60" autocomplete="off" placeholder="Ex: Azami"
+                               class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-sm text-medieval-text focus:outline-none focus:border-medieval-gold">
+                    </div>
+                    <div>
+                        <label for="char-race" class="block text-xs font-bold text-medieval-gold mb-1">Raça</label>
+                        <select id="char-race" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-sm text-medieval-text focus:outline-none focus:border-medieval-gold"></select>
+                    </div>
+                </div>
+
+                <div id="variant-wrap" hidden>
+                    <label for="char-variant" class="block text-xs font-bold text-medieval-gold mb-1">Variante racial</label>
+                    <select id="char-variant" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-sm text-medieval-text focus:outline-none focus:border-medieval-gold"></select>
+                    <p id="variant-note" class="text-xs text-medieval-muted mt-2"></p>
+                </div>
+                <p id="race-note" hidden class="text-xs text-amber-200/90 bg-medieval-bg border border-medieval-border rounded p-3"></p>
+
+                <details class="bg-medieval-bg border border-medieval-border rounded p-3">
+                    <summary class="cursor-pointer text-xs font-bold text-medieval-gold">Bônus raciais livres (opcional)</summary>
+                    <p class="text-xs text-medieval-muted mt-2">Use para raças com escolha de atributo (Vanara, Growkies, Selakians, Plantídeos...) ou qualquer ajuste que a calculadora não conheça. Aceita valores negativos.</p>
+                    <div class="grid grid-cols-5 gap-2 mt-3">
+                        <div><label for="rb-for" class="block text-[11px] text-medieval-muted mb-1">For</label><input type="number" id="rb-for" value="0" min="-5" max="5" class="w-full bg-medieval-card border border-medieval-border rounded p-2 text-center text-sm text-medieval-text"></div>
+                        <div><label for="rb-agi" class="block text-[11px] text-medieval-muted mb-1">Agi</label><input type="number" id="rb-agi" value="0" min="-5" max="5" class="w-full bg-medieval-card border border-medieval-border rounded p-2 text-center text-sm text-medieval-text"></div>
+                        <div><label for="rb-vig" class="block text-[11px] text-medieval-muted mb-1">Vig</label><input type="number" id="rb-vig" value="0" min="-5" max="5" class="w-full bg-medieval-card border border-medieval-border rounded p-2 text-center text-sm text-medieval-text"></div>
+                        <div><label for="rb-int" class="block text-[11px] text-medieval-muted mb-1">Int</label><input type="number" id="rb-int" value="0" min="-5" max="5" class="w-full bg-medieval-card border border-medieval-border rounded p-2 text-center text-sm text-medieval-text"></div>
+                        <div><label for="rb-car" class="block text-[11px] text-medieval-muted mb-1">Car</label><input type="number" id="rb-car" value="0" min="-5" max="5" class="w-full bg-medieval-card border border-medieval-border rounded p-2 text-center text-sm text-medieval-text"></div>
+                    </div>
+                </details>
+
+                <div>
+                    <label for="char-class" class="block text-xs font-bold text-medieval-gold mb-1">Classe</label>
+                    <select id="char-class" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-sm text-medieval-text focus:outline-none focus:border-medieval-gold"></select>
+                </div>
+
+ Atributos Base (Pontos Distribuídos)</h2>
+
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                    <div>
+                        <label for="attr-for" class="block text-xs font-bold text-medieval-gold mb-1">Força</label>
+                        <input type="number" id="attr-for" value="0" min="-5" max="8" inputmode="numeric" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm font-bold text-medieval-text focus:outline-none focus:border-medieval-gold">
+                    </div>
+                    <div>
+                        <label for="attr-agi" class="block text-xs font-bold text-medieval-gold mb-1">Agilidade</label>
+                        <input type="number" id="attr-agi" value="0" min="-5" max="8" inputmode="numeric" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm font-bold text-medieval-text focus:outline-none focus:border-medieval-gold">
+                    </div>
+                    <div>
+                        <label for="attr-vig" class="block text-xs font-bold text-medieval-gold mb-1">Vigor</label>
+                        <input type="number" id="attr-vig" value="0" min="-5" max="8" inputmode="numeric" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm font-bold text-medieval-text focus:outline-none focus:border-medieval-gold">
+                    </div>
+                    <div>
+                        <label for="attr-int" class="block text-xs font-bold text-medieval-gold mb-1">Inteligência</label>
+                        <input type="number" id="attr-int" value="0" min="-5" max="8" inputmode="numeric" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm font-bold text-medieval-text focus:outline-none focus:border-medieval-gold">
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="attr-car" class="block text-xs font-bold text-medieval-gold mb-1">Carisma</label>
+                        <input type="number" id="attr-car" value="0" min="-5" max="8" inputmode="numeric" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm font-bold text-medieval-text focus:outline-none focus:border-medieval-gold">
+                    </div>
+                </div>
+                <p id="points-status" class="text-xs text-medieval-muted" aria-live="polite"></p>
+
+                <h2 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3 pt-4">3. Modificadores Extras (Equipamento / Buffs)</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div>
+                        <label for="mod-hp" class="block text-xs text-medieval-muted mb-1">+ HP Extra</label>
+                        <input type="number" id="mod-hp" value="0" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm text-medieval-text">
+                    </div>
+                    <div>
+                        <label for="mod-pe" class="block text-xs text-medieval-muted mb-1">+ PE Extra</label>
+                        <input type="number" id="mod-pe" value="0" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm text-medieval-text">
+                    </div>
+                    <div>
+                        <label for="mod-mana" class="block text-xs text-medieval-muted mb-1">+ Mana/Fé Extra</label>
+                        <input type="number" id="mod-mana" value="0" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm text-medieval-text">
+                    </div>
+                    <div>
+                        <label for="mod-esquiva" class="block text-xs text-medieval-muted mb-1">+ Esquiva Extra</label>
+                        <input type="number" id="mod-esquiva" value="0" class="w-full bg-medieval-bg border border-medieval-border rounded p-2 text-center text-sm text-medieval-text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAINEL DE RESULTADOS -->
+            <div class="lg:col-span-5 bg-medieval-card p-6 sm:p-8 rounded-lg border-2 border-medieval-gold shadow-2xl space-y-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-medieval-gold border-b border-medieval-border pb-3 flex items-center justify-between gap-3">
+                        <span>📊 Status Finais</span>
+                        <span id="display-name" class="text-sm font-normal text-medieval-muted truncate">Azami</span>
+                    </h2>
+
+                    <div class="mt-4 p-3 bg-medieval-bg rounded border border-medieval-border text-xs space-y-1">
+                        <strong class="text-medieval-gold block mb-1">Atributos Totais (Base + Raça):</strong>
+                        <div class="grid grid-cols-5 text-center text-medieval-text font-mono font-bold">
+                            <div>FOR<br><span id="tot-for">0</span></div>
+                            <div>AGI<br><span id="tot-agi">0</span></div>
+                            <div>VIG<br><span id="tot-vig">0</span></div>
+                            <div>INT<br><span id="tot-int">0</span></div>
+                            <div>CAR<br><span id="tot-car">0</span></div>
+                        </div>
+                        <p id="race-bonus-line" class="text-[11px] text-medieval-muted text-center pt-1"></p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                        <div class="bg-medieval-bg p-4 rounded-lg border border-red-900/50 space-y-1 text-center">
+                            <span class="text-xs font-bold text-red-400 uppercase tracking-wider">❤️ Pontos de Vida (HP)</span>
+                            <div id="res-hp" class="text-3xl font-extrabold text-red-200">15</div>
+                            <span class="text-[10px] text-medieval-muted block">Base Classe + (Vigor × 5) + Extras</span>
+                        </div>
+
+                        <div class="bg-medieval-bg p-4 rounded-lg border border-amber-900/50 space-y-1 text-center">
+                            <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">⚡ Esforço (PE)</span>
+                            <div id="res-pe" class="text-3xl font-extrabold text-amber-200">25</div>
+                            <span class="text-[10px] text-medieval-muted block">Base Classe + (Força × 4) + Extras</span>
+                        </div>
+
+                        <div class="bg-medieval-bg p-4 rounded-lg border border-blue-900/50 space-y-1 text-center">
+                            <span id="res-mana-label" class="text-xs font-bold text-blue-400 uppercase tracking-wider">🔮 Mana</span>
+                            <div id="res-mana" class="text-3xl font-extrabold text-blue-200">15</div>
+                            <span id="res-mana-formula" class="text-[10px] text-medieval-muted block">Base Classe + (Int × 5) + Extras</span>
+                        </div>
+
+                        <div class="bg-medieval-bg p-4 rounded-lg border border-purple-900/50 space-y-1 text-center">
+                            <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">🧠 Sanidade</span>
+                            <div id="res-sanidade" class="text-3xl font-extrabold text-purple-200">20</div>
+                            <span class="text-[10px] text-medieval-muted block">20 Base + (Carisma × 5)</span>
+                        </div>
+
+                        <div class="col-span-2 bg-medieval-bg p-4 rounded-lg border border-medieval-gold/50 space-y-1 text-center">
+                            <span class="text-xs font-bold text-medieval-gold uppercase tracking-wider">🛡️ Esquiva Passiva (DT)</span>
+                            <div id="res-esquiva" class="text-4xl font-extrabold text-medieval-gold">7</div>
+                            <span class="text-[10px] text-medieval-muted block">Base Classe + ⌊Agilidade ÷ 2⌋ + Extras</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border text-xs text-medieval-muted space-y-1">
+                    <span class="text-medieval-gold font-bold">📌 Resumo de Fórmulas:</span>
+                    <p>• HP = Base da Classe + (Vigor Total × 5)</p>
+                    <p>• PE = Base da Classe + (Força Total × 4)</p>
+                    <p>• Mana = Base da Classe + (Inteligência Total × 5) — Fé (Paladino e Clérigo): Inteligência × 3</p>
+                    <p>• Sanidade = 20 Base + (Carisma Total × 5)</p>
+                    <p>• Esquiva = Base da Classe + ⌊Agilidade Total ÷ 2⌋</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventário (o controle de combate e as perícias ficam em combate.html) -->
+        <div>
+            <section class="bg-medieval-card border border-medieval-border rounded-lg p-5 space-y-4" aria-labelledby="inv-title">
+                <h2 id="inv-title" class="text-xl font-bold text-medieval-gold">🎒 Inventário</h2>
+                <form id="item-form" class="grid grid-cols-[1fr_90px_auto] gap-2 no-print">
+                    <input id="item-name" maxlength="60" placeholder="Nome do item" aria-label="Nome do item" class="min-w-0 bg-medieval-bg border border-medieval-border rounded p-2">
+                    <input id="item-qty" type="number" min="1" value="1" aria-label="Quantidade" class="bg-medieval-bg border border-medieval-border rounded p-2">
+                    <button id="add-item" type="submit" class="bg-medieval-gold hover:bg-medieval-goldHover text-medieval-bg font-bold rounded px-3 transition">Adicionar</button>
+                </form>
+                <ul id="inventory-list" class="space-y-2 text-sm"></ul>
+                <p id="inventory-empty" class="text-xs text-medieval-muted">Nenhum item adicionado ainda.</p>
+                <p class="text-xs text-medieval-muted no-print">Itens e quantidades ficam salvos neste navegador.</p>
+            </section>
+        </div>
+
+        <!-- Ferramentas de mesa -->
+        <div class="grid md:grid-cols-2 gap-6 no-print">
+            <section class="bg-medieval-card border border-medieval-border rounded-lg p-5 space-y-3" aria-labelledby="dice-title">
+                <h2 id="dice-title" class="text-xl font-bold text-medieval-gold">🎲 Rolador de dados</h2>
+                <form id="dice-form" class="flex gap-2">
+                    <input id="dice-formula" value="1d20+2" autocomplete="off" aria-label="Fórmula de dados" class="min-w-0 flex-1 bg-medieval-bg border border-medieval-border rounded p-2">
+                    <button id="roll-btn" type="submit" class="bg-medieval-gold hover:bg-medieval-goldHover text-medieval-bg font-bold rounded px-4 transition">Rolar</button>
+                </form>
+                <p class="text-xs text-medieval-muted">Aceita fórmulas como 1d20+2, d6, 2d6+1d4-1. Limite: 100 dados por rolagem.</p>
+                <div id="dice-result" class="text-2xl font-bold text-medieval-gold" aria-live="polite">Resultado: —</div>
+                <ol id="dice-history" class="text-xs text-medieval-muted space-y-1"></ol>
+            </section>
+
+            <section class="bg-medieval-card border border-medieval-border rounded-lg p-5 space-y-3" aria-labelledby="save-title">
+                <h2 id="save-title" class="text-xl font-bold text-medieval-gold">💾 Guardar ficha</h2>
+                <p class="text-sm text-medieval-muted">A ficha é salva automaticamente neste navegador. Exporte um arquivo para backup (ou para levar a ficha a outro aparelho) e importe depois.</p>
+                <div class="flex flex-wrap gap-2">
+                    <button id="export-sheet" type="button" class="border border-medieval-gold text-medieval-gold hover:bg-medieval-border rounded px-3 py-2 transition">Exportar JSON</button>
+                    <label class="border border-medieval-border hover:bg-medieval-border rounded px-3 py-2 cursor-pointer transition focus-within:outline focus-within:outline-2 focus-within:outline-medieval-goldHover">
+                        Importar JSON<input id="import-sheet" type="file" accept="application/json,.json" class="sr-only">
+                    </label>
+                    <button id="print-sheet" type="button" class="border border-medieval-border hover:bg-medieval-border rounded px-3 py-2 transition">🖨️ Imprimir</button>
+                    <button id="reset-sheet" type="button" class="border border-red-900 text-red-300 hover:bg-red-950 rounded px-3 py-2 transition">Limpar ficha</button>
+                </div>
+                <p id="save-status" class="text-xs text-medieval-muted" aria-live="polite">Pronto para salvar.</p>
+            </section>
+        </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="../js/data/classes.js"></script>
+    <script src="../js/ficha-core.js"></script>
+    <script src="../js/ficha.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raças de Nekopara - NekoWorld</title>
+    <meta name="description" content="Todas as raças e linhagens de Nekopara.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <!-- Conteúdo Principal -->
+    <main id="conteudo" class="flex-grow w-full max-w-7xl mx-auto px-4 py-16 space-y-12">
+
+        <!-- Lista de raças -->
+        <section id="race-list" class="space-y-10">
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">Raças e Linhagens de Nekopara</h1>
+                <p class="text-medieval-muted text-lg">Escolha uma linhagem para abrir o tomo completo com lore, atributos, passivas, habilidades e desvantagens.</p>
+            </div>
+
+            <div class="max-w-xl mx-auto w-full">
+                <label for="race-search" class="block text-sm text-medieval-gold mb-2">Buscar raça</label>
+                <input id="race-search" type="search" autocomplete="off" placeholder="Ex.: Neko, voo, felino, água..."
+                       class="w-full bg-medieval-card border border-medieval-border rounded-lg px-4 py-3 text-medieval-text focus:outline-none focus:border-medieval-gold">
+                <p id="race-count" class="text-xs text-medieval-muted mt-2" aria-live="polite"></p>
+            </div>
+
+            <!-- Os cards são gerados por js/racas.js a partir de js/data/racas.js -->
+            <div id="race-grid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+            <p id="race-empty" hidden class="text-center text-medieval-muted">Nenhuma raça encontrada para essa busca.</p>
+        </section>
+
+        <!-- Detalhe da raça (oculto até abrir uma raça) -->
+        <article id="race-detail-section" hidden aria-labelledby="detail-title"
+                 class="bg-medieval-card border-2 border-medieval-gold p-6 sm:p-12 rounded-lg shadow-2xl space-y-8">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <button id="race-close" type="button"
+                        class="bg-medieval-bg hover:bg-medieval-border text-medieval-gold border border-medieval-border px-4 py-2 rounded text-sm font-bold transition">
+                    &larr; Todas as raças
+                </button>
+                <div class="flex gap-2">
+                    <button id="race-prev" type="button" class="bg-medieval-bg hover:bg-medieval-border text-medieval-gold border border-medieval-border px-3 py-2 rounded text-sm font-bold transition" aria-label="Raça anterior">&lsaquo; Anterior</button>
+                    <button id="race-next" type="button" class="bg-medieval-bg hover:bg-medieval-border text-medieval-gold border border-medieval-border px-3 py-2 rounded text-sm font-bold transition" aria-label="Próxima raça">Próxima &rsaquo;</button>
+                </div>
+            </div>
+
+            <header class="flex items-center gap-4 border-b border-medieval-border pb-6">
+                <span id="detail-icon" class="text-5xl" aria-hidden="true"></span>
+                <div>
+                    <h2 id="detail-title" tabindex="-1" class="text-3xl font-bold text-medieval-gold"></h2>
+                    <p id="detail-subtitle" class="text-medieval-muted"></p>
+                </div>
+            </header>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="space-y-3">
+                    <h3 class="text-lg font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Ilustração da Raça</h3>
+                    <div class="bg-medieval-bg border-2 border-dashed border-medieval-border rounded-lg h-72 flex flex-col items-center justify-center text-center p-4 relative overflow-hidden">
+                        <img id="race-img" src="" alt="" hidden class="absolute inset-0 w-full h-full object-cover">
+                        <div id="race-img-placeholder" class="space-y-2 text-medieval-muted">
+                            <span class="text-4xl" aria-hidden="true">🖼️</span>
+                            <p class="text-xs">Espaço reservado para a imagem da raça.<br>
+                                <span class="text-medieval-gold font-mono">campo "img" em js/data/racas.js</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 space-y-4">
+                    <h3 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Lore &amp; Origem</h3>
+                    <p id="detail-lore" class="text-medieval-muted leading-relaxed text-sm sm:text-base"></p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 pt-4 border-t border-medieval-border">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Atributos &amp; Habilidades</h3>
+                    <div class="bg-medieval-bg p-4 rounded border border-medieval-border space-y-2 text-sm">
+                        <div id="detail-attributes" class="space-y-1"></div>
+                        <div id="detail-abilities" class="space-y-2 text-medieval-muted border-t border-medieval-border pt-2 empty:hidden"></div>
+                    </div>
+                    <h3 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3 pt-4">Desvantagens</h3>
+                    <p id="detail-disadvantages" class="text-medieval-muted text-sm leading-relaxed bg-medieval-bg p-4 rounded border border-medieval-border"></p>
+                </div>
+
+                <div class="space-y-4">
+                    <div id="detail-variants-wrap" hidden class="space-y-4">
+                        <h3 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Variantes</h3>
+                        <ul id="detail-variants" class="space-y-3 text-sm text-medieval-muted"></ul>
+                    </div>
+                    <h3 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Passivas</h3>
+                    <ul id="detail-skills" class="list-disc list-inside text-medieval-muted space-y-2 text-sm"></ul>
+                </div>
+            </div>
+
+            <div id="detail-evolution-wrap" hidden class="space-y-4 pt-4 border-t border-medieval-border">
+                <h3 class="text-xl font-bold text-medieval-gold border-l-4 border-medieval-gold pl-3">Evolução</h3>
+                <p class="text-xs text-medieval-muted">A raça evolui ao longo da campanha. O nível 0 é a raça base.</p>
+                <ol id="detail-evolution" class="grid sm:grid-cols-2 gap-3 text-sm"></ol>
+            </div>
+
+            <div class="text-center pt-2">
+                <a href="personagens.html" class="inline-block bg-amber-800 hover:bg-amber-700 text-amber-100 border border-medieval-gold/50 px-6 py-2 rounded-md font-bold shadow transition">
+                    📝 Criar uma ficha com esta raça
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="../js/data/racas.js"></script>
+    <script src="../js/racas.js"></script>
+</body>
+</html>

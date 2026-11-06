@@ -1,0 +1,53 @@
+/* NekoWorld — ajustes globais que o Tailwind não cobre sozinho. */
+
+:root { color-scheme: dark; }
+
+html { scroll-padding-top: 6rem; } /* links âncora não ficam escondidos atrás do menu fixo */
+
+/* Foco visível para quem navega pelo teclado */
+:focus-visible {
+    outline: 2px solid #f3c653;
+    outline-offset: 2px;
+}
+
+/* Link "pular para o conteúdo" */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 100;
+    padding: .5rem 1rem;
+    background: #d4af37;
+    color: #14110f;
+    font-weight: 700;
+    border-radius: .375rem;
+    transition: top .15s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Campos numéricos: esconde as setinhas pequenas demais em telas de toque */
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { opacity: 1; }
+
+/* Itens escondidos por filtros de busca */
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto !important; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Impressão (usada pela ficha): fundo branco, sem menus nem botões */
+@media print {
+    html, body { background: #fff !important; }
+    body, body * {
+        color: #000 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border-color: #999 !important;
+        text-shadow: none !important;
+    }
+    header, footer, .no-print, .skip-link { display: none !important; }
+    main, section { max-width: 100% !important; }
+}

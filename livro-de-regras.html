@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livro de Regras - NekoWorld</title>
+    <meta name="description" content="Regras oficiais de Nekopara: atributos, perícias, classes, magias e combate.">
+    <meta name="theme-color" content="#14110f">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS via CDN (a configuração de cores fica em js/tailwind-config.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../js/tailwind-config.js"></script>
+</head>
+<body class="bg-medieval-bg text-medieval-text min-h-screen flex flex-col font-serif selection:bg-medieval-gold selection:text-medieval-bg">
+
+    <!-- Menu e rodapé são montados por js/main.js (edite a lista NAV lá) -->
+    <div id="site-header"></div>
+    <script src="../js/main.js"></script>
+
+    <!-- Conteúdo Principal -->
+    <main id="conteudo" class="flex-grow max-w-5xl mx-auto px-4 py-16 space-y-16">
+        <div class="text-center space-y-4">
+            <h1 class="text-4xl font-extrabold text-medieval-gold tracking-wide">Grimório de Regras Oficiais</h1>
+            <p class="text-medieval-muted text-lg">As diretrizes fundamentais de atributos, perícias, classes, magias e combate em Nekopara.</p>
+        </div>
+
+        <!-- Navegação Interna por Âncoras -->
+        <div class="flex flex-wrap justify-center gap-2 bg-medieval-card p-4 rounded-lg border border-medieval-border text-sm">
+            <a href="#atributos" class="px-3 py-1 bg-medieval-bg rounded text-medieval-gold hover:bg-medieval-border">Atributos & Sanidade</a>
+            <a href="#pericias" class="px-3 py-1 bg-medieval-bg rounded text-medieval-gold hover:bg-medieval-border">Perícias</a>
+            <a href="#classes" class="px-3 py-1 bg-medieval-bg rounded text-medieval-gold hover:bg-medieval-border">Classes</a>
+            <a href="#magias" class="px-3 py-1 bg-medieval-bg rounded text-medieval-gold hover:bg-medieval-border">Magias & Elementos</a>
+            <a href="#combate" class="px-3 py-1 bg-medieval-bg rounded text-medieval-gold hover:bg-medieval-border">Dano & Combate</a>
+        </div>
+
+        <!-- Seção 1: Atributos e Sanidade -->
+        <section id="atributos" class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-6">
+            <h2 class="text-2xl font-bold text-medieval-gold border-b border-medieval-border pb-3">1. Atributos e Recursos Vitais</h2>
+            <p class="text-medieval-muted leading-relaxed">
+                Você distribui <strong>10 pontos</strong> entre seus atributos (começando com 0, limite base de 6). Caso sua raça ou habilidade garanta pontos extras, o limite passa a ser 8 para um único atributo. Atributos zerados exigem rolar 2 dados e pegar o pior resultado (o 20 natural sempre prevalece), e negativados exigem rolar +1 dado para cada ponto abaixo de zero, sempre pegando o pior resultado, independente do 20.
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 text-sm text-medieval-muted">
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border space-y-1">
+                    <strong class="text-medieval-gold">Força:</strong> Dano bruto e peso. Cada 1 ponto concede <span class="text-medieval-gold">+4 em PE</span> (Pontos de Esforço).
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border space-y-1">
+                    <strong class="text-medieval-gold">Agilidade:</strong> Velocidade, reflexos e precisão. Cada 2 pontos aumentam <span class="text-medieval-gold">+1 de Esquiva</span>.
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border space-y-1">
+                    <strong class="text-medieval-gold">Vigor:</strong> Saúde e fôlego. Cada 1 ponto concede <span class="text-medieval-gold">+5 em HP</span>.
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border space-y-1">
+                    <strong class="text-medieval-gold">Inteligência:</strong> Intelecto e sabedoria arcana. Cada 1 ponto concede <span class="text-medieval-gold">+5 em Mana ou +3 em Fé</span>.
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border space-y-1 md:col-span-2">
+                    <strong class="text-medieval-gold">Carisma:</strong> Lábia e liderança. Cada 1 ponto concede <span class="text-medieval-gold">+5 em Sanidade</span>.
+                </div>
+            </div>
+
+            <!-- Sanidade -->
+            <div class="bg-medieval-bg p-5 rounded border border-medieval-border space-y-3">
+                <h3 class="text-lg font-bold text-medieval-gold">O Sistema de Sanidade</h3>
+                <p class="text-medieval-muted text-sm leading-relaxed">
+                    Você tem uma barra base de <strong>20 de Sanidade</strong>, somando +5 por ponto de Carisma. Se chegar a 5, sofre penalidades como medo, pavor ou alucinações. Se chegar a 0, rola-se 1d6 para determinar o nível de enlouquecimento (podendo paralisar por turnos ou perder temporariamente o controle do personagem).
+                </p>
+            </div>
+            <p class="text-sm"><a href="atributos.html" class="text-medieval-gold hover:text-medieval-goldHover underline underline-offset-4">Ver a página completa de Atributos &rarr;</a></p>
+        </section>
+
+        <!-- Seção 2: Perícias -->
+        <section id="pericias" class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-6">
+            <h2 class="text-2xl font-bold text-medieval-gold border-b border-medieval-border pb-3">2. Perícias e Seus Usos</h2>
+            <p class="text-medieval-muted leading-relaxed">
+                Você escolhe <strong>5 perícias</strong> para receber um bônus de <strong>(+2)</strong> (sem repetir as perícias que já ganham bônus de sua classe). Elas são divididas pelos atributos base:
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm text-medieval-muted">
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-2">Força</strong>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Atletismo</li>
+                        <li>Luta</li>
+                        <li>Natação</li>
+                    </ul>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-2">Agilidade</strong>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Crime</li>
+                        <li>Furtividade</li>
+                        <li>Pilotagem</li>
+                        <li>Percepção</li>
+                        <li>Reflexos</li>
+                        <li>Pontaria</li>
+                        <li>Iniciativa</li>
+                        <li>Acrobacia</li>
+                    </ul>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-2">Vigor</strong>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Fortitude</li>
+                        <li>Resistência</li>
+                        <li>Tolerância</li>
+                        <li>Recuperação</li>
+                    </ul>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-2">Inteligência</strong>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Ciências</li>
+                        <li>Medicina</li>
+                        <li>Magia</li>
+                        <li>Engenharia</li>
+                        <li>Tática</li>
+                        <li>Profissão</li>
+                        <li>Cultura</li>
+                        <li>Investigação</li>
+                        <li>Identificação</li>
+                    </ul>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-2">Carisma</strong>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Diplomacia</li>
+                        <li>Intuição</li>
+                        <li>Enganação</li>
+                        <li>Intimidação</li>
+                        <li>Artes</li>
+                        <li>Adestramento</li>
+                        <li>Liderança</li>
+                    </ul>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-2">Especiais</strong>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li>Flerte (Carisma)</li>
+                        <li>Rezar (Especial)</li>
+                        <li>Sobrevivência (Especial)</li>
+                        <li>Dobra (Especial)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Classes -->
+        <section id="classes" class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-6">
+            <h2 class="text-2xl font-bold text-medieval-gold border-b border-medieval-border pb-3">3. Classes de Nekopara</h2>
+            <p class="text-medieval-muted leading-relaxed">
+                O sistema conta com diversas classes especializadas, cada uma com seus recursos próprios (HP, PE, Esquiva e mecânicas exclusivas):
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 text-sm text-medieval-muted">
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">⚔️ Guerreiro</strong>
+                    <p class="text-xs">Mestre em armas com maestria assinada, bônus em Luta e alta eficácia física, mas penalidades em testes de magia.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🔥 Bárbaro</strong>
+                    <p class="text-xs">Usa pontos de Fúria acumulados em combate para causar dano bruto avassalador, ignorando efeitos de medo.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🛡️ Paladino</strong>
+                    <p class="text-xs">Usa pontos de Juramento para proteger aliados e potencializar ataques sagrados contra as forças de Erebus.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🗡️ Ladino</strong>
+                    <p class="text-xs">Especialista em furtividade, usando pontos de Aproveitamento e dano crítico em alvos desprevenidos.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🥋 Monge</strong>
+                    <p class="text-xs">Usa pontos de Ki e Combos de golpes consecutivos para desferir ataques rápidos e manobras ágeis.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🔮 Mago & Feiticeiro</strong>
+                    <p class="text-xs">Detentores de grimórios e mana, capazes de aprimorar alcance, dano ou múltiplos alvos com feitiços arcanos.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">📜 Bruxo & Clérigo</strong>
+                    <p class="text-xs">Conectados a pactos sombrios ou forças divinas, com curas potencializadas (Regeneração Arcana) e milagres.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🎵 Bardo & Alquimista</strong>
+                    <p class="text-xs">O bardo usa instrumentos e melodias para buffs e suporte; o alquimista cria fórmulas e poções customizadas.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">⚡ Magimarcialista & Elementalista</strong>
+                    <p class="text-xs">Unem armas e magia (Magimarcialista) ou manipulam diretamente o ambiente com Pontos de Dobra (Elementalista).</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block text-base mb-1">🥊 Pugilista</strong>
+                    <p class="text-xs">Usa Dados de Ódio (DO) e sequências esmagadoras de socos para crescer seu poder destrutivo em combate.</p>
+                </div>
+            </div>
+            <p class="text-sm"><a href="classes.html" class="text-medieval-gold hover:text-medieval-goldHover underline underline-offset-4">Ver todas as classes, com status e recursos &rarr;</a></p>
+        </section>
+
+        <!-- Seção 4: Magias e Relações Elementais -->
+        <section id="magias" class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-6">
+            <h2 class="text-2xl font-bold text-medieval-gold border-b border-medieval-border pb-3">4. Magias e Relações Elementais</h2>
+            <p class="text-medieval-muted leading-relaxed">
+                As magias dividem-se em elementos que possuem vantagens e desvantagens diretas no campo de batalha.
+            </p>
+            <div class="bg-medieval-bg p-4 rounded border border-medieval-border text-sm text-medieval-gold font-mono text-center">
+                Fogo &gt; Gelo<br><br>
+                Gelo &gt; Natureza<br><br>
+                Natureza &gt; Relâmpago<br><br>
+                Relâmpago &gt; Lunar<br><br>
+                Lunar &gt; Vento<br><br>
+                Vento &gt; Fogo<br><br>
+                Divino ⇄ Sangue (Vantagem mútua)
+            </div>
+            <div class="grid md:grid-cols-3 gap-4 text-sm text-medieval-muted">
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-1">🔥 Elemento Favorável</strong>
+                    <p class="text-xs">+50% de dano aplicado ao alvo vulnerável.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-1">❄️ Desfavorável / Igual</strong>
+                    <p class="text-xs">-25% de dano no impacto.</p>
+                </div>
+                <div class="bg-medieval-bg p-4 rounded border border-medieval-border">
+                    <strong class="text-medieval-gold block mb-1">✨ Elemento Neutro</strong>
+                    <p class="text-xs">Dano base original do feitiço.</p>
+                </div>
+            </div>
+            <p class="text-sm"><a href="magias.html" class="text-medieval-gold hover:text-medieval-goldHover underline underline-offset-4">Ver a página completa de Magias &rarr;</a></p>
+        </section>
+
+        <!-- Seção 5: Tipos de Dano e Combate -->
+        <section id="combate" class="bg-medieval-card p-8 rounded-lg border-2 border-medieval-border shadow-xl space-y-6">
+            <h2 class="text-2xl font-bold text-medieval-gold border-b border-medieval-border pb-3">5. Tipos de Dano e Sistema de Combate</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-sm text-medieval-muted">
+                <div class="space-y-3">
+                    <h3 class="text-lg font-bold text-medieval-gold">Tipos de Dano Físico</h3>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li><strong>Cortante:</strong> Espadas, machados, foices, adagas longas.</li>
+                        <li><strong>Perfurante:</strong> Lanças, flechas, adagas curtas.</li>
+                        <li><strong>Contundente / Impacto:</strong> Martelos, socos, clavas.</li>
+                    </ul>
+                    <p class="text-xs italic text-medieval-gold/80">Inimigos possuem resistências ou imunidades específicas (ex: golens são imunes a corte, mas sofrem com impacto).</p>
+                </div>
+                <div class="space-y-3">
+                    <h3 class="text-lg font-bold text-medieval-gold">Mecânicas de Combate</h3>
+                    <ul class="list-disc list-inside space-y-1 text-xs">
+                        <li><strong>Esquiva (DEF):</strong> Substitui a defesa passiva. É a DT mínima que o inimigo precisa tirar para te acertar.</li>
+                        <li><strong>Críticos:</strong> Em um resultado natural 20 no d20, o dano é dobrado (2× o dano original).</li>
+                        <li><strong>Ação Principal:</strong> atacar, conjurar feitiço, correr uma distância longa, sacar uma arma, esquivar (teste de Reflexos), esconder-se (Furtividade), procurar ou perceber algo, ou uma ação de objeto completa.</li>
+                        <li><strong>Ação Bônus:</strong> não é natural; só existe se um feitiço, habilidade ou talento a conceder (geralmente uma por turno).</li>
+                        <li><strong>Ação Reativa:</strong> resposta a algo fora do seu turno, com teste de Reflexos + Agilidade. Não consome o seu próximo turno.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-sm"><a href="armas.html" class="text-medieval-gold hover:text-medieval-goldHover underline underline-offset-4">Ver a página de Armas e Tipos de Dano &rarr;</a></p>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+</body>
+</html>
